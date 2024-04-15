@@ -4,7 +4,7 @@ namespace AlSafar.Domain.Models.Flight;
 
 public class Flight
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string? GateNumber { get; set; }
 

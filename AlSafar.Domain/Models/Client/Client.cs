@@ -4,7 +4,7 @@ namespace AlSafar.Domain.Models.Client;
 
 public class Client
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 
@@ -18,7 +18,7 @@ public class Client
 
     public bool Verified { get; set; } = false;
     
-    public Guid TourCompanyId { get; set; }
+    public int TourCompanyId { get; set; }
 
     [JsonIgnore]
     public TourCompany.TourCompany? TourCompany { get; set; }

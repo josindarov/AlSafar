@@ -4,7 +4,7 @@ namespace AlSafar.Domain.Models.TourCompany;
 
 public class TourCompany
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 

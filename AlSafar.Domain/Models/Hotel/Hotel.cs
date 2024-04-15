@@ -4,7 +4,7 @@ namespace AlSafar.Domain.Models.Hotel;
 
 public class Hotel
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string? HotelName { get; set; }
 

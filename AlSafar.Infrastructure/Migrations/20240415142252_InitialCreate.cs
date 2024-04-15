@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,7 +16,8 @@ namespace AlSafar.Infrastructure.Migrations
                 name: "Flights",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     GateNumber = table.Column<string>(type: "text", nullable: true),
                     FlightTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -28,7 +30,8 @@ namespace AlSafar.Infrastructure.Migrations
                 name: "Hotels",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     HotelName = table.Column<string>(type: "text", nullable: true),
                     NumberOfStars = table.Column<int>(type: "integer", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
@@ -43,7 +46,8 @@ namespace AlSafar.Infrastructure.Migrations
                 name: "TourCompanies",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -55,14 +59,15 @@ namespace AlSafar.Infrastructure.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
                     PhoneNumber = table.Column<string>(type: "text", nullable: true),
                     Age = table.Column<int>(type: "integer", nullable: false),
                     PassportId = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
                     Verified = table.Column<bool>(type: "boolean", nullable: false),
-                    TourCompanyId = table.Column<Guid>(type: "uuid", nullable: false)
+                    TourCompanyId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -79,10 +84,11 @@ namespace AlSafar.Infrastructure.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
                     Role = table.Column<string>(type: "text", nullable: true),
-                    TourCompanyId = table.Column<Guid>(type: "uuid", nullable: false)
+                    TourCompanyId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,13 +105,14 @@ namespace AlSafar.Infrastructure.Migrations
                 name: "Tours",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Destination = table.Column<string>(type: "text", nullable: true),
                     Duration = table.Column<decimal>(type: "numeric", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    HotelId = table.Column<Guid>(type: "uuid", nullable: false),
-                    FlightId = table.Column<Guid>(type: "uuid", nullable: false),
-                    TourCompanyId = table.Column<Guid>(type: "uuid", nullable: false)
+                    HotelId = table.Column<int>(type: "integer", nullable: false),
+                    FlightId = table.Column<int>(type: "integer", nullable: false),
+                    TourCompanyId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

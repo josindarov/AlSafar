@@ -24,9 +24,11 @@ namespace AlSafar.Infrastructure.Migrations
 
             modelBuilder.Entity("AlSafar.Domain.Models.Client.Client", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Age")
                         .HasColumnType("integer");
@@ -43,8 +45,8 @@ namespace AlSafar.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("TourCompanyId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("TourCompanyId")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Verified")
                         .HasColumnType("boolean");
@@ -58,9 +60,11 @@ namespace AlSafar.Infrastructure.Migrations
 
             modelBuilder.Entity("AlSafar.Domain.Models.Employee.Employee", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -68,8 +72,8 @@ namespace AlSafar.Infrastructure.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("TourCompanyId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("TourCompanyId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -80,9 +84,11 @@ namespace AlSafar.Infrastructure.Migrations
 
             modelBuilder.Entity("AlSafar.Domain.Models.Flight.Flight", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("FlightTime")
                         .HasColumnType("timestamp with time zone");
@@ -97,9 +103,11 @@ namespace AlSafar.Infrastructure.Migrations
 
             modelBuilder.Entity("AlSafar.Domain.Models.Hotel.Hotel", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("HotelName")
                         .HasColumnType("text");
@@ -120,9 +128,11 @@ namespace AlSafar.Infrastructure.Migrations
 
             modelBuilder.Entity("AlSafar.Domain.Models.Tour.Tour", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Destination")
                         .HasColumnType("text");
@@ -130,17 +140,17 @@ namespace AlSafar.Infrastructure.Migrations
                     b.Property<decimal>("Duration")
                         .HasColumnType("numeric");
 
-                    b.Property<Guid>("FlightId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("FlightId")
+                        .HasColumnType("integer");
 
-                    b.Property<Guid>("HotelId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("HotelId")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<Guid>("TourCompanyId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("TourCompanyId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -155,9 +165,11 @@ namespace AlSafar.Infrastructure.Migrations
 
             modelBuilder.Entity("AlSafar.Domain.Models.TourCompany.TourCompany", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
