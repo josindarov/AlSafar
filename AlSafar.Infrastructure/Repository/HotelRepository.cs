@@ -1,32 +1,55 @@
 using AlSafar.Domain.Models.Hotel;
+using AlSafar.Infrastructure.DbContext;
 using AlSafar.Infrastructure.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlSafar.Infrastructure.Repository;
 
 public class HotelRepository : IHotelRepository
 {
+    private readonly AppDbContext _dbContext;
+
+    public HotelRepository(AppDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
     public async Task<Hotel> AddHotelAsync(Hotel hotel)
     {
-        throw new NotImplementedException();
+        var result = await _dbContext.Hotels.AddAsync(hotel);
+        return result.Entity;
     }
 
     public async Task<Hotel> GetHotelByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        Hotel? hotel = await _dbContext.Hotels
+            .FirstOrDefaultAsync(o => o.Id == id);
+
+        return hotel;
     }
 
     public IQueryable<Hotel> GetAllHotels()
     {
-        throw new NotImplementedException();
+        return _dbContext.Hotels;
     }
 
     public async Task<Hotel> RemoveHotelAsync(Hotel hotel)
     {
-        throw new NotImplementedException();
+        _dbContext.Hotels.Remove(hotel);
+        return hotel;
     }
 
-    public async Task<Hotel> UpdateHotelAsync(Hotel hotel)
+    public async Task<Hotel?> UpdateHotelAsync(int id, Hotel hotel)
     {
-        throw new NotImplementedException();
+        Hotel? updatedHotel = await _dbContext.Hotels
+            .FirstOrDefaultAsync(o => o.Id == id);
+
+        if (updatedHotel != null)
+        {
+            updatedHotel.HotelName = hotel.HotelName;
+            updatedHotel.Location = hotel.Location;
+            updatedHotel.NumberOfStars = hotel.NumberOfStars;
+        }
+        
+        return updatedHotel;
     }
 }

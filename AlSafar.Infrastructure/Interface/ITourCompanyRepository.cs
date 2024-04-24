@@ -8,5 +8,5 @@ public interface ITourCompanyRepository
     Task<TourCompany> GetTourCompanyById(int id);
     IQueryable<TourCompany> GetAllTourCompanies();
     Task<TourCompany> RemoveTourCompanyAsync(TourCompany tourCompany);
-    Task<TourCompany> UpdateTourCompanyAsync(TourCompany tourCompany);
+    Task<TourCompany> UpdateTourCompanyAsync(int id, TourCompany tourCompany);
 }

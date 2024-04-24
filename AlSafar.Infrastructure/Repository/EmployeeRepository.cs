@@ -1,32 +1,56 @@
 using AlSafar.Domain.Models.Employee;
+using AlSafar.Infrastructure.DbContext;
 using AlSafar.Infrastructure.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlSafar.Infrastructure.Repository;
 
 public class EmployeeRepository : IEmployeeRepository
 {
+    private readonly AppDbContext _dbContext;
+
+    public EmployeeRepository(AppDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
     public async Task<Employee> AddEmployeeAsync(Employee employee)
     {
-        throw new NotImplementedException();
+        var result = await _dbContext.Employees.AddAsync(employee);
+        return result.Entity;
     }
 
-    public async Task<Employee> GetEmployeeByIdAsync(int id)
+    public async Task<Employee?> GetEmployeeByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        Employee? employee = await _dbContext.Employees
+            .FirstOrDefaultAsync(o => o.Id == id);
+
+        return employee;
     }
 
     public IQueryable<Employee> GetAllEmployee()
     {
-        throw new NotImplementedException();
+        return _dbContext.Employees;
     }
 
     public async Task<Employee> RemoveEmployeeAsync(Employee employee)
     {
-        throw new NotImplementedException();
+        _dbContext.Employees.Remove(employee);
+        return employee;
     }
 
-    public async Task<Employee> UpdateEmployeeAsync(Employee employee)
+    public async Task<Employee?> UpdateEmployeeAsync(int id, Employee employee)
     {
-        throw new NotImplementedException();
+        Employee? updatedEmployee = await _dbContext.Employees
+            .FirstOrDefaultAsync(o => o.Id == id);
+
+        if (updatedEmployee != null)
+        {
+            updatedEmployee.Name = employee.Name;
+            updatedEmployee.Role = employee.Role;
+
+            return updatedEmployee;
+        }
+
+        return null;
     }
 }

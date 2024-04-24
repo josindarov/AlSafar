@@ -8,5 +8,5 @@ public interface IHotelRepository
     Task<Hotel> GetHotelByIdAsync(int id);
     IQueryable<Hotel> GetAllHotels();
     Task<Hotel> RemoveHotelAsync(Hotel hotel);
-    Task<Hotel> UpdateHotelAsync(Hotel hotel);
+    Task<Hotel?> UpdateHotelAsync(int id, Hotel hotel);
 }
