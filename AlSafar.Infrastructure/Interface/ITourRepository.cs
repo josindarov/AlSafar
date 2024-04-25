@@ -9,5 +9,5 @@ public interface ITourRepository
     Task<Tour> GetTourById(int id);
     IQueryable<Tour> GetAllTours();
     Task<Tour> RemoveTourAsync(Tour tour);
-    Task<Tour> UpdateTourAsync(int id, Tour tour);
+    Task<Tour?> UpdateTourAsync(int id, Tour tour);
 }

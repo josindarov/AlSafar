@@ -16,6 +16,7 @@ public class EmployeeRepository : IEmployeeRepository
     public async Task<Employee> AddEmployeeAsync(Employee employee)
     {
         var result = await _dbContext.Employees.AddAsync(employee);
+        await _dbContext.SaveChangesAsync();
         return result.Entity;
     }
 
@@ -35,6 +36,7 @@ public class EmployeeRepository : IEmployeeRepository
     public async Task<Employee> RemoveEmployeeAsync(Employee employee)
     {
         _dbContext.Employees.Remove(employee);
+        await _dbContext.SaveChangesAsync();
         return employee;
     }
 
@@ -47,7 +49,7 @@ public class EmployeeRepository : IEmployeeRepository
         {
             updatedEmployee.Name = employee.Name;
             updatedEmployee.Role = employee.Role;
-
+            await _dbContext.SaveChangesAsync();
             return updatedEmployee;
         }
 

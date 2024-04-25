@@ -16,6 +16,7 @@ public class HotelRepository : IHotelRepository
     public async Task<Hotel> AddHotelAsync(Hotel hotel)
     {
         var result = await _dbContext.Hotels.AddAsync(hotel);
+        await _dbContext.SaveChangesAsync();
         return result.Entity;
     }
 
@@ -35,6 +36,7 @@ public class HotelRepository : IHotelRepository
     public async Task<Hotel> RemoveHotelAsync(Hotel hotel)
     {
         _dbContext.Hotels.Remove(hotel);
+        await _dbContext.SaveChangesAsync();
         return hotel;
     }
 
@@ -49,7 +51,8 @@ public class HotelRepository : IHotelRepository
             updatedHotel.Location = hotel.Location;
             updatedHotel.NumberOfStars = hotel.NumberOfStars;
         }
-        
+
+        await _dbContext.SaveChangesAsync();
         return updatedHotel;
     }
 }

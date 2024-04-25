@@ -16,6 +16,7 @@ public class TourRepository : ITourRepository
     public async Task<Tour> AddTourAsync(Tour tour)
     {
         var result = await _dbContext.Tours.AddAsync(tour);
+        await _dbContext.SaveChangesAsync();
         return result.Entity;
     }
 
@@ -35,18 +36,24 @@ public class TourRepository : ITourRepository
     public async Task<Tour> RemoveTourAsync(Tour tour)
     {
         _dbContext.Tours.Remove(tour);
+        await _dbContext.SaveChangesAsync();
         return tour;
     }
 
-    public async Task<Tour> UpdateTourAsync(int id, Tour tour)
+    public async Task<Tour?> UpdateTourAsync(int id, Tour tour)
     {
         Tour? updatedTour = await _dbContext.Tours
             .FirstOrDefaultAsync(o => o.Id == id);
 
-        updatedTour.Destination = tour.Destination;
-        updatedTour.Duration = tour.Duration;
-        updatedTour.Price = tour.Price;
+        if (updatedTour != null)
+        {
+            updatedTour.Destination = tour.Destination;
+            updatedTour.Duration = tour.Duration;
+            updatedTour.Price = tour.Price;
+            await _dbContext.SaveChangesAsync();
+            return updatedTour;
+        }
 
-        return updatedTour;
+        return null;
     }
 }

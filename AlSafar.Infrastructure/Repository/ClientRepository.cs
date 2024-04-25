@@ -16,6 +16,7 @@ public class ClientRepository : IClientRepository
     public async Task<Client> AddClientAsync(Client client)
     {
         var result = await _dbContext.Clients.AddAsync(client);
+        await _dbContext.SaveChangesAsync();
         return result.Entity;
     }
 
@@ -35,6 +36,7 @@ public class ClientRepository : IClientRepository
     public async Task<Client> RemoveClientAsync(Client client)
     {
         _dbContext.Clients.Remove(client);
+        await _dbContext.SaveChangesAsync();
         return client;
     }
 
@@ -51,7 +53,7 @@ public class ClientRepository : IClientRepository
             updatedClient.PassportId = client.PassportId;
             updatedClient.PhoneNumber = client.PhoneNumber;
             updatedClient.Verified = client.Verified;
-
+            await _dbContext.SaveChangesAsync();
             return updatedClient;
         }
 

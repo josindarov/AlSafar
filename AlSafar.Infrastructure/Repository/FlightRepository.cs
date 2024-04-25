@@ -16,6 +16,7 @@ public class FlightRepository : IFlightRepository
     public async Task<Flight> AddFlightAsync(Flight flight)
     {
         var result = await _dbContext.Flights.AddAsync(flight);
+        await _dbContext.SaveChangesAsync();
         return result.Entity;
     }
 
@@ -35,6 +36,7 @@ public class FlightRepository : IFlightRepository
     public async Task<Flight> RemoveFlightAsync(Flight flight)
     {
         _dbContext.Flights.Remove(flight);
+        await _dbContext.SaveChangesAsync();
         return flight;
     }
 
@@ -43,7 +45,13 @@ public class FlightRepository : IFlightRepository
         Flight? updatedFlight = await _dbContext.Flights
             .FirstOrDefaultAsync(o => o.Id == id);
 
-        updatedFlight.GateNumber = flight.GateNumber;
-        return updatedFlight;
+        if (updatedFlight != null)
+        {
+            updatedFlight.GateNumber = flight.GateNumber;
+            await _dbContext.SaveChangesAsync();
+            return updatedFlight;
+        }
+
+        return null;
     }
 }

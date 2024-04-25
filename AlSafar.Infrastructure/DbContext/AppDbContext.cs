@@ -19,7 +19,7 @@ public class AppDbContext : Microsoft.EntityFrameworkCore.DbContext
     public DbSet<Flight> Flights { get; set; }
     public DbSet<Hotel> Hotels { get; set; }
     public DbSet<Tour> Tours { get; set; }
-    public DbSet<TourCompany> TourCompanies { get; set; }
+    public DbSet<TourCompany?> TourCompanies { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
