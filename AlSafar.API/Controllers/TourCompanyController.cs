@@ -6,11 +6,11 @@ namespace AlSafar.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HomeController : ControllerBase
+public class TourCompanyController : ControllerBase
 {
     private readonly ITourCompanyRepository _tourCompanyRepository;
 
-    public HomeController(ITourCompanyRepository tourCompanyRepository)
+    public TourCompanyController(ITourCompanyRepository tourCompanyRepository)
     {
         _tourCompanyRepository = tourCompanyRepository;
     }
