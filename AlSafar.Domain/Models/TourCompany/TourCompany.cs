@@ -13,7 +13,4 @@ public class TourCompany
 
     [JsonIgnore]
     public ICollection<Employee.Employee>? Employees { get; set; }
-
-    [JsonIgnore]
-    public ICollection<Client.Client>? Clients { get; set; }
 }

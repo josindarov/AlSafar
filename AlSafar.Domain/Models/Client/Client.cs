@@ -18,8 +18,8 @@ public class Client
 
     public bool Verified { get; set; } = false;
     
-    public int TourCompanyId { get; set; }
+    public int TourId { get; set; }
 
     [JsonIgnore]
-    public TourCompany.TourCompany? TourCompany { get; set; }
+    public Tour.Tour? Tour { get; set; }
 }

@@ -28,10 +28,10 @@ public class AppDbContext : Microsoft.EntityFrameworkCore.DbContext
             .WithOne(o => o.TourCompany)
             .HasForeignKey(o => o.TourCompanyId);
 
-        modelBuilder.Entity<TourCompany>()
+        modelBuilder.Entity<Tour>()
             .HasMany(o => o.Clients)
-            .WithOne(o => o.TourCompany)
-            .HasForeignKey(o => o.TourCompanyId);
+            .WithOne(o => o.Tour)
+            .HasForeignKey(o => o.TourId);
 
         modelBuilder.Entity<TourCompany>()
             .HasMany(o => o.Employees)

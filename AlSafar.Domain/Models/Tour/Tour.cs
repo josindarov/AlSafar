@@ -26,4 +26,7 @@ public class Tour
 
     [JsonIgnore]
     public TourCompany.TourCompany? TourCompany { get; set; }
+    
+    [JsonIgnore]
+    public ICollection<Client.Client>? Clients { get; set; }
 }
